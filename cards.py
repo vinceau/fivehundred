@@ -1,8 +1,7 @@
 #!/usr/bin/python
-from abc import ABCMeta
 
 class Card(object):
-    __metaclass__ = ABCMeta
+    pass
 
 class Pile(object):
 
