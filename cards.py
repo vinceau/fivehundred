@@ -86,6 +86,14 @@ class PlayingCard(Card):
         self.value = value
         self.rank = suit.rank * 100 + value.rank
 
+    def __cmp__(self, other):
+        return cmp(self._calc_val(), other._calc_val())
+
+    def _calc_val(self):
+        """Calculated value taking into account suit and rank
+        """
+        return self.suit.rank * 1000 + self.rank
+
 class StandardDeck(Pile):
     def __init__(self):
         Pile.__init__(self)
