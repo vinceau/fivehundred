@@ -35,6 +35,15 @@ class Pile(object):
     def size(self):
         return len(self.cards)
 
+    def deal(self, players, num):
+        """Deals num cards to each player in players
+        """
+        for _ in range(num):
+            for p in players:
+                p.take(self.draw())
+                if self.size() == 0:
+                    return
+
 class Suit(object):
     def __init__(self, name, rank):
         self.name = name
@@ -98,3 +107,11 @@ class Player(object):
         for _ in range(num):
             self.hand.add(pile.get_top())
 
+
+if __name__ == '__main__':
+    p1 = Player('Player 1')
+    p2 = Player('Player 2')
+    players = [p1, p2]
+    deck = StandardDeck()
+    #deal 5 cards to each player
+    deck.deal(players, 5)
