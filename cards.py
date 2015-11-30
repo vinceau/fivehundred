@@ -87,3 +87,14 @@ class StandardDeck(Pile):
                 self.add(PlayingCard(s, v))
         self.shuffle()
 
+class Player(object):
+    def __init__(self, name):
+        self.name = name
+        self.hand = Pile()
+
+    def draw(self, pile, num=1):
+        """The player draws num cards from the pile
+        """
+        for _ in range(num):
+            self.hand.add(pile.get_top())
+
