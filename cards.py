@@ -25,7 +25,8 @@ class Pile(object):
         shuffle(self.cards)
 
     def show(self):
-        for c in self.cards:
+        #print it in reverse (first one printed is top of pile)
+        for c in reversed(self.cards):
             print(c)
 
     def add(self, card):
