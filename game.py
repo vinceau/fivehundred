@@ -38,6 +38,8 @@ class Game(object):
         self.current_bid = ''
 
     def add_player(self, name):
+        if not self.state == 'initialised':
+            return self._wrong_state()
         #this is the order of play
         #player 1 and 3 are assumed to be on a team
         if name in self.players:
@@ -48,6 +50,8 @@ class Game(object):
 
 
     def add_team(self, team):
+        if not self.state == 'initialised':
+            return self._wrong_state()
         team_size = len(team)
         #ensure teams are of the right size
         if team_size != 2 and team_size != 3:
