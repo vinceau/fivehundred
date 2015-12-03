@@ -129,6 +129,19 @@ class Player(object):
         for _ in range(num):
             self.hand.add(pile.get_top())
 
+    def add(self, card):
+        """Given a card, the player adds it to their hand.
+        """
+        self.hand.add(card)
+
+    def take(self, pile):
+        """Given a pile, the player takes it and ands the whole pile to their
+        hand.
+        """
+        for card in pile:
+            self.add(card)
+        pile.empty()
+
 
 if __name__ == '__main__':
     p1 = Player('Player 1')
