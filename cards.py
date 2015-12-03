@@ -30,10 +30,20 @@ class Pile(object):
             print(c)
 
     def add(self, card):
+        """Adds a card to the top of the pile (will be drawn next)
+        """
         self.cards.append(card)
+
+    def extend(self, cards):
+        """Adds multiple cards to pile in the given order
+        """
+        self.cards.extend(cards)
 
     def size(self):
         return len(self.cards)
+
+    def empty(self):
+        self.cards = []
 
     def deal(self, players, num):
         """Deals num cards to each player in players
