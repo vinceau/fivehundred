@@ -54,7 +54,7 @@ class Pile(object):
         """
         for _ in range(num):
             for p in players:
-                p.take(self.draw())
+                p.draw(self)
                 if self.size() == 0:
                     return
 
