@@ -23,8 +23,13 @@ class Game(object):
                 player.draw(deck, i)
             self.kitty.add(deck.get_top())
 
-if __name__ == '__main__':
+def main():
     g = Game()
-    for _ in range(1, 5):
-        g.add_player('Player %d' % _)
+    g.add_player('albert')
+    g.add_player('ben')
+    g.add_player('charli')
+    g.add_player('derrick')
     g.start()
+
+if __name__ == '__main__':
+    main()
