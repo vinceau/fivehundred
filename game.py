@@ -147,6 +147,12 @@ class Game(object):
         print('There\'s a time and place for everything.')
         return False
 
+    def _reset(self):
+        #next person deals
+        self.dealer += 1
+        self.kitty.empty() #this is important
+
+
 def main():
     g = Game()
     g.add_player('albert')
