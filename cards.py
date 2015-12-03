@@ -37,10 +37,11 @@ class Pile(object):
         """
         self.cards.append(card)
 
-    def extend(self, cards):
+    def extend(self, pile):
         """Adds multiple cards to pile in the given order
         """
-        self.cards.extend(cards)
+        self.cards.extend(pile)
+        pile.empty()
 
     def size(self):
         return len(self.cards)
