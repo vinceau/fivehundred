@@ -124,7 +124,7 @@ class Player(object):
         self.hand = Pile()
 
     def draw(self, pile, num=1):
-        """The player draws num cards from the pile
+        """Given a pile, the player draws num cards from the top of the pile.
         """
         for _ in range(num):
             self.hand.add(pile.get_top())
