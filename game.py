@@ -139,6 +139,10 @@ class Game(object):
             self.current_bidder = 0 #back to start
         return True
 
+    def drop(self, cards):
+        if self.state != 'kitty':
+            return self._wrong_state()
+
     def _wrong_state(self):
         print('There\'s a time and place for everything.')
         return False
