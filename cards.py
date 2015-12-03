@@ -13,6 +13,9 @@ class Pile(object):
     def __init__(self):
         self.cards = []
 
+    def __iter__(self):
+        return iter(self.cards)
+
     def get_top(self):
         """Returns the card on the top of the pile
         """
