@@ -4,6 +4,26 @@ from random import shuffle
 from lib500.fivehundred import FiveHundredDeck
 from lib500.cards import Player, Pile
 
+class Order(object):
+    """Keeps track of the order, who has delt etc.
+    """
+    def __init__(self, players, start=0):
+        self.players = players
+        self.start = start #this person starts
+
+    def __iter__(self):
+        i = 0
+        no_players = len(self.players)
+        while i < no_players:
+            turn = i + self.start
+            yield self.players[turn % no_players]
+            i += 1
+
+    def next_starter(self):
+        """The next person in line starts
+        """
+        self.start += 1
+
 class Game(object):
     def __init__(self):
         self.players = [] #list of player names in the order they play
