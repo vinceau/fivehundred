@@ -1,7 +1,7 @@
 """The game handler
 """
 from random import shuffle
-from lib500.fivehundred import FiveHundredDeck
+from lib500.fivehundred import FiveHundredDeck, valid_bid, bid_value
 from lib500.cards import Player, Pile
 
 class Order(object):
@@ -31,6 +31,11 @@ class Game(object):
         self.kitty = Pile()
         self.team_one = []
         self.team_two = []
+        self.dealer = 0
+        self.bidders = []
+        self.state = 'initialised'
+        self.current_bidder = 0
+        self.current_bid = ''
 
     def add_player(self, name):
         #this is the order of play
@@ -79,6 +84,7 @@ class Game(object):
             print('You don\'t have the right number of people!')
             return
         self._deal()
+        self._bidding()
 
     def _deal(self):
         deck = FiveHundredDeck(len(self.players) == 6)
@@ -86,6 +92,52 @@ class Game(object):
             for name in self.players:
                 self.player_map[name].draw(deck, i)
             self.kitty.add(deck.get_top())
+
+    def _bidding(self):
+        """Start the bidding process
+        """
+        bid_order = Order(self.players, self.dealer + 1)
+        self.bidders = list(bid_order)
+        self.state = 'bidding'
+
+    def set_bid(self, player, bid):
+        #are we in bidding phase?
+        if self.state != 'bidding':
+            return self._wrong_state()
+        #is it the right player making the bid?
+        if player != self.bidders[self.current_bidder]:
+            print('It is not your turn to bid!')
+            return False
+        #is it a valid bid?
+        if not valid_bid(bid):
+            print('That bid is not valid')
+            return False
+        #did someone pass? do we have a winner?
+        if bid == 'PASS':
+            del self.bidders[self.current_bidder]
+            if len(self.bidders) == 1:
+                #wooh! finally done
+                #distribute kitty
+                self.bidders[0].hand.extend(self.kitty)
+                self.kitty.empty()
+                self.state = 'kitty'
+                return True
+        #is the bid high enough?
+        elif bid_value(self.current_bid) >= bid_value(bid):
+            print('You need to bid higher than that!')
+            return False
+        #yep valid bid
+        else:
+            self.current_bidder += 1
+            self.current_bid = bid
+        #rewrap bidder if necessary
+        if self.current_bidder > len(self.players):
+            self.current_bidder = 0 #back to start
+        return True
+
+    def _wrong_state(self):
+        print('There\'s a time and place for everything.')
+        return False
 
 def main():
     g = Game()
