@@ -107,7 +107,8 @@ values = {
 
 class PlayingCard(Card):
     def __init__(self, suit, value):
-        Card.__init__(self, value.name + ' of ' + suit.name)
+        identifier = suit.identifier + value.identifier
+        Card.__init__(self, identifier, value.name + ' of ' + suit.name)
         self.suit = suit
         self.value = value
 
