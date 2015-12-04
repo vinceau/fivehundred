@@ -17,6 +17,16 @@ class Pile(object):
     def __iter__(self):
         return iter(self.cards)
 
+    def get(self, identifier):
+        """Returns a specific card from the pile 
+        """
+        for i in range(len(self.cards)):
+            if self.cards[i].identifier == identifier:
+                card = self.cards[i]
+                del self.cards[i]
+                return card
+        return None
+
     def get_top(self):
         """Returns the card on the top of the pile
         """
