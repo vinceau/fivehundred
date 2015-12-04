@@ -41,3 +41,26 @@ def bid_value(bid):
     if not bid:
         return 0
     return _BID_TABLE.get(bid)
+
+class Bid(object):
+    def __init__(self, identifier):
+        self.identifier = identifier
+        self.suit = self._get_suit(identifier)
+        self.value = int(filter(str.isdigit, identifier))
+        self.worth = bid_value(identifier)
+
+    def __lt__(self, other):
+        return self.worth < other.worth
+
+    def _get_suit(self, identifier):
+        last = identifier[-1]
+        if last == 'M' or  last == 'X':
+            return 'notrumps'
+        if last == 'D':
+            return 'diamonds'
+        if last == 'C':
+            return 'clubs'
+        if last == 'H':
+            return 'hearts'
+        if last == 'S':
+            return 'spades'

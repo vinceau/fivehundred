@@ -2,7 +2,7 @@
 """
 from random import shuffle
 from fivehundred.core import FiveHundredDeck
-from fivehundred.bids import valid_bid, bid_value
+from fivehundred.bids import valid_bid, bid_value, Bid
 from fivehundred.cards import Player, Pile
 
 class Order(object):
@@ -36,7 +36,8 @@ class Game(object):
         self.bidders = []
         self.state = 'initialised'
         self.current_bidder = 0
-        self.current_bid = ''
+        self.winning_bid = None
+        self.trumpsuit = None
 
     def add_player(self, name):
         if not self.state == 'initialised':
@@ -117,24 +118,26 @@ class Game(object):
         if not valid_bid(bid):
             print('That bid is not valid')
             return False
+        new_bid = Bid(bid)
         #did someone pass? do we have a winner?
         if bid == 'PASS':
             del self.bidders[self.current_bidder]
             if len(self.bidders) == 1:
                 #wooh! finally done
                 #distribute kitty
+                self.trumpsuit = self.winning_bid.suit
                 self.bidders[0].hand.extend(self.kitty)
                 self.kitty.empty()
                 self.state = 'kitty'
                 return True
         #is the bid high enough?
-        elif bid_value(self.current_bid) >= bid_value(bid):
+        elif self.winning_bid >= new_bid:
             print('You need to bid higher than that!')
             return False
         #yep valid bid
         else:
             self.current_bidder += 1
-            self.current_bid = bid
+            self.winning_bid = new_bid
         #rewrap bidder if necessary
         if self.current_bidder > len(self.players):
             self.current_bidder = 0 #back to start
