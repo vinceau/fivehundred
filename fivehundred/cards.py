@@ -70,16 +70,17 @@ class Pile(object):
                     return
 
 class Suit(object):
-    def __init__(self, name, rank):
+    def __init__(self, identifier, name, rank):
+        self.identifier = identifier
         self.name = name
         self.rank = rank
 
 #in a normal deck (e.g. poker) suits are all ranked the same
 suits = {
-    'diamonds' : Suit('Diamonds', 1),
-    'clubs' : Suit('Clubs', 1),
-    'hearts' : Suit('Hearts', 1),
-    'spades' : Suit('Spades', 1),
+    'diamonds' : Suit('D', 'Diamonds', 1),
+    'clubs' : Suit('C', 'Clubs', 1),
+    'hearts' : Suit('H', 'Hearts', 1),
+    'spades' : Suit('S', 'Spades', 1),
 }
 
 class Value(object):
