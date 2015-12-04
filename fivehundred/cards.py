@@ -98,15 +98,17 @@ class PlayingCard(Card):
         Card.__init__(self, value.name + ' of ' + suit.name)
         self.suit = suit
         self.value = value
-        self.rank = suit.rank * 100 + value.rank
 
-    def __cmp__(self, other):
-        return cmp(self._calc_val(), other._calc_val())
+    def __lt__(self, other):
+        return self.get_rank() < other.get_rank()
 
-    def _calc_val(self):
+    def __eq__(self, other):
+        return self.get_rank() == other.get_rank()
+
+    def get_rank(self):
         """Calculated value taking into account suit and rank
         """
-        return self.suit.rank * 1000 + self.rank
+        return self.suit.rank * 1000 + self.value.rank
 
 class StandardDeck(Pile):
     def __init__(self):
