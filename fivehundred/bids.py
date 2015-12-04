@@ -46,8 +46,12 @@ class Bid(object):
     def __init__(self, identifier):
         self.identifier = identifier
         self.suit = self._get_suit(identifier)
-        self.value = int(filter(str.isdigit, identifier))
         self.worth = bid_value(identifier)
+        self.tricks_needed = 0 #misere
+        num = ''.join(filter(str.isdigit, identifier))
+        if num:
+            self.tricks_needed = int(num)
+
 
     def __lt__(self, other):
         return self.worth < other.worth
