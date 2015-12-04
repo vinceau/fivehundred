@@ -1,7 +1,8 @@
 """The game handler
 """
 from random import shuffle
-from fivehundred.fivehundred import FiveHundredDeck, valid_bid, bid_value
+from fivehundred.core import FiveHundredDeck
+from fivehundred.bids import valid_bid, bid_value
 from fivehundred.cards import Player, Pile
 
 class Order(object):
