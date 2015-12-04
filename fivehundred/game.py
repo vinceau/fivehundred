@@ -1,8 +1,8 @@
 """The game handler
 """
 from random import shuffle
-from lib500.fivehundred import FiveHundredDeck, valid_bid, bid_value
-from lib500.cards import Player, Pile
+from fivehundred.fivehundred import FiveHundredDeck, valid_bid, bid_value
+from fivehundred.cards import Player, Pile
 
 class Order(object):
     """Keeps track of the order, who has delt etc.

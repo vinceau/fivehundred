@@ -1,6 +1,6 @@
 """Five Hundred related classes
 """
-from lib500.cards import Card, Pile, Value, PlayingCard, suits
+from fivehundred.cards import Card, Pile, Value, PlayingCard, suits
 
 _BID_TABLE = {
     '6S': 40,
