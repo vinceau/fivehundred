@@ -2,11 +2,12 @@
 from random import shuffle
 
 class Card(object):
-    def __init__(self, name):
+    def __init__(self, identifier, name=None):
+        self.identifier = identifier
         self.name = name
 
     def __str__(self):
-        return self.name
+        return self.name if self.name else self.identifier
 
 class Pile(object):
 
