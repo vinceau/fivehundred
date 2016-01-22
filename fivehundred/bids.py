@@ -53,8 +53,20 @@ class Bid(object):
             self.tricks_needed = int(num)
 
 
+    def __le__(self, other):
+        return self.worth <= other.worth
+
+    def __ge__(self, other):
+        return self.worth >= other.worth
+
     def __lt__(self, other):
         return self.worth < other.worth
+
+    def __gt__(self, other):
+        return self.worth > other.worth
+
+    def __eq__(self, other):
+        return self.identifier == other.identifier
 
     def _get_suit(self, identifier):
         last = identifier[-1]

@@ -20,3 +20,5 @@ def test_bid_values():
     assert b.suit == 'notrumps'
     assert b.tricks_needed == 7 #must win 0 tricks
     assert b.worth == 220
+    assert Bid('6C') > Bid('6S')
+    assert Bid('6C') >= Bid('6S')
