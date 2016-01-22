@@ -1,6 +1,6 @@
 """Five Hundred related classes
 """
-from fivehundred.cards import Card, Pile, Value, PlayingCard, suits
+from .cards import Card, Pile, Value, PlayingCard, suits
 
 class Birdie(Card):
     def __init__(self):
