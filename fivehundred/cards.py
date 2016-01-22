@@ -18,7 +18,7 @@ class Pile(object):
         return iter(self.cards)
 
     def get(self, identifier):
-        """Returns a specific card from the pile 
+        """Returns a specific card from the pile
         """
         for i in range(len(self.cards)):
             if self.cards[i].identifier == identifier:
@@ -156,12 +156,3 @@ class Player(object):
         for card in pile:
             self.add(card)
         pile.empty()
-
-
-if __name__ == '__main__':
-    p1 = Player('Player 1')
-    p2 = Player('Player 2')
-    players = [p1, p2]
-    deck = StandardDeck()
-    #deal 5 cards to each player
-    deck.deal(players, 5)

@@ -157,13 +157,4 @@ class Game(object):
         self.kitty.empty() #this is important
 
 
-def main():
-    g = Game()
-    g.add_player('albert')
-    g.add_player('ben')
-    g.add_player('charli')
-    g.add_player('derrick')
-    g.start()
 
-if __name__ == '__main__':
-    main()
