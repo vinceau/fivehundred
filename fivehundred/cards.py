@@ -69,6 +69,11 @@ class Pile(object):
                 if self.size() == 0:
                     return
 
+    def has(self, ident):
+        """Checks to see if a card is inside the pile
+        """
+        return any(ident == c.identifier for c in self.cards)
+
 class Suit(object):
     def __init__(self, identifier, name, rank):
         self.identifier = identifier
