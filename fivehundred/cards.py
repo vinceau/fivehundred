@@ -74,6 +74,15 @@ class Pile(object):
         """
         return any(ident == c.identifier for c in self.cards)
 
+    def remove(self, ident):
+        """Remove a specific card from the pile if it exists
+        """
+        for c in self.cards:
+            if ident == c.identifier:
+                self.cards.remove(c)
+                return True
+        return False
+
 class Suit(object):
     def __init__(self, identifier, name, rank):
         self.identifier = identifier
