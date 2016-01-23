@@ -110,7 +110,6 @@ class Round(object):
         if bid == 'PASS':
             self.bidders.remove(player)
             if len(self.bidders) == 1:
-                self.turn = self.bidders[0]
                 self.player_map[self.turn].hand.extend(self.kitty)
                 self.kitty.empty()
                 self.state = 'kitty'
