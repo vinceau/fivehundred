@@ -116,6 +116,20 @@ class Round(object):
                 self.state = 'kitty'
         return True
 
+    def get_hand(self, player):
+        """Returns the player's hand in a sorted order.
+        """
+        hand = self.player_map[player].hand
+        hand_repr = []
+        #sort the cards in spades, diamonds, clubs, hearts
+        for s in ['S', 'D', 'C', 'H']:
+            cards = list(x for x in hand if x.suit.identifier == s)
+            hand_repr.extend(list(x.identifier for x in sorted(cards)))
+        #add the birdie if the player has it
+        if hand.has('Birdie'):
+            hand_repr.append('Birdie')
+        return hand_repr
+
 
 class Game(object):
     """Takes a list of players. That's the order that play will be in.
