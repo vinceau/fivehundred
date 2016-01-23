@@ -129,6 +129,19 @@ class Round(object):
             hand_repr.append('Birdie')
         return hand_repr
 
+    def return_kitty(self, player, kitty):
+        """Return the cards in kitty to the kitty.
+        """
+        if player != self.turn:
+            print('You don\'t even have the kitty.')
+            return
+        if self.state != 'kitty':
+            print('Now is not the time for that.')
+            return
+        for ident in kitty:
+            self.player_map[player].hand.remove(ident)
+        assert len(self.player_map[player].hand) == 10
+        self.state = 'play'
 
 class Game(object):
     """Takes a list of players. That's the order that play will be in.
